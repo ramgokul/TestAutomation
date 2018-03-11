@@ -1,12 +1,15 @@
 package core_libs;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
-import java.lang.String;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class Browser {
@@ -48,12 +51,27 @@ public class Browser {
 
             case "chrome":
                 System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/java/drivers/chromedriver");
+
+                Map<String, Object> chromePrefs = new HashMap<>();
+                chromePrefs.put("profile.default_content_settings.popups", 0);
+                chromePrefs.put("download.default_directory", downloadDirectory);
+                chromePrefs.put("download.prompt_for_download", "false");
+                chromePrefs.put("profile.default_content_setting_values.automatic_downloads", 1);
+
+
+                ChromeOptions co = new ChromeOptions();
+                co.setAcceptInsecureCerts(true);
+                co.addArguments("test-type");
+                co.addArguments("start-maximized");
+
+                driver = new ChromeDriver(co);
+
                 break;
 
         }
 
         driver.manage().window().maximize();
-//        driver.manage().timeouts().implicitlyWait(10L, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(implicitWaitTimeout, TimeUnit.SECONDS);
 
         return driver;
 
