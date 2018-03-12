@@ -12,14 +12,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-public class Browser {
+public class BrowserHelper {
 
     WebDriver driver = null;
     File downloadDirectory = null;
     long implicitWaitTimeout = 30;
 
 
-    public WebDriver initBrowser(String browserName){
+    public WebDriver launch(String browserName){
 
         String filePath = new File(System.getProperty("user.dir")).getParent() + "/Downloads";
         System.out.println("File path : "+filePath);
@@ -75,5 +75,11 @@ public class Browser {
 
         return driver;
 
+    }
+
+    public void close(WebDriver driver){
+        if (driver != null){
+            driver.quit();
+        }
     }
 }
