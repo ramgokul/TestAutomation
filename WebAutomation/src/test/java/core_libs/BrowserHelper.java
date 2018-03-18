@@ -16,13 +16,12 @@ public class BrowserHelper {
 
     WebDriver driver = null;
     File downloadDirectory = null;
-    long implicitWaitTimeout = 30;
+    static long implicitWaitTimeout = 30;
 
 
     public WebDriver launch(String browserName){
 
         String filePath = new File(System.getProperty("user.dir")).getParent() + "/Downloads";
-        System.out.println("File path : "+filePath);
         downloadDirectory = new File(filePath);
 
         if(!downloadDirectory.exists()){
@@ -77,9 +76,15 @@ public class BrowserHelper {
 
     }
 
-    public void close(WebDriver driver){
+    public void quit(WebDriver driver){
         if (driver != null){
             driver.quit();
+        }
+    }
+
+    public void close(WebDriver driver){
+        if (driver != null){
+            driver.close();
         }
     }
 }
