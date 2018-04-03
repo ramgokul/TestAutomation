@@ -62,6 +62,7 @@ public class BrowserHelper {
                 co.setAcceptInsecureCerts(true);
                 co.addArguments("test-type");
                 co.addArguments("start-maximized");
+                co.setExperimentalOption("prefs", chromePrefs);
 
                 driver = new ChromeDriver(co);
 
