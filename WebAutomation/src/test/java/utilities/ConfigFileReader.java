@@ -12,7 +12,6 @@ public class ConfigFileReader {
     public ConfigFileReader() {
         properties = new Properties();
         String configFilePath = System.getProperty("user.dir") + "/src/test/resources/config/configuration.properties";
-        System.out.println(configFilePath);
         File configFile = new File(configFilePath);
 
         try {

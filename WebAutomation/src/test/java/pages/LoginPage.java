@@ -3,6 +3,7 @@ package pages;
 import base.BaseUtil;
 import core_libs.CommonHelper;
 import core_libs.SyncHelper;
+import managers.PageObjectManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,7 +11,8 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
     private BaseUtil base;
-    CommonHelper ch;
+    PageObjectManager pageObjectManager;
+    CommonHelper commonHelper;
 
     @FindBy(id = "email") private WebElement emailField;
     @FindBy(id = "pass") private WebElement passwordField;
@@ -20,16 +22,17 @@ public class LoginPage {
         this.base = base;
         PageFactory.initElements(base.driver, this);
 
-        ch = new CommonHelper(base.driver);
+        pageObjectManager = new PageObjectManager(base.driver);
+        commonHelper = pageObjectManager.getCommonHelper();
     }
 
     public void loginToFacebook(String email, String password){
-        ch.sendKeys(emailField, email);
-        ch.sendKeys(passwordField, password);
-        ch.click(login);
+        commonHelper.sendKeys(emailField, email);
+        commonHelper.sendKeys(passwordField, password);
+        commonHelper.click(login);
     }
 
     public void goToFB(String url){
-        ch.gotoUrl(url);
+        commonHelper.gotoUrl(url);
     }
 }
