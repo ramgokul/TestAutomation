@@ -32,7 +32,7 @@ public class BrowserHelper {
         switch (browserName.toLowerCase().trim()){
 
             case "firefox":
-                System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "/src/test/java/drivers/geckodriver");
+                System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "/src/test/resources/drivers/geckodriver");
 
                 FirefoxProfile fp = new FirefoxProfile();
                 fp.setPreference("browser.download.manager.showWhenStarting",false);

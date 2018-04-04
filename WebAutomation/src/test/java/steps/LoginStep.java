@@ -6,6 +6,7 @@ import cucumber.api.java.en.Given;
 import pages.LoginPage;
 
 import java.util.List;
+import java.util.Map;
 
 public class LoginStep {
     private BaseUtil base;
@@ -19,9 +20,10 @@ public class LoginStep {
 
     @Given("^I login to facebook with the following credentials$")
     public void iLoginToFacebookWithTheFollowingCredentials(DataTable table) throws Throwable {
-        List<List<String>> data = table.raw();
-        String email = data.get(1).get(0).toString();
-        String password = data.get(1).get(1).toString();
+//        List<List<String>> data = table.raw();
+        List<Map<String, String>> data = table.asMaps(String.class, String.class);
+        String email = data.get(0).get("username").trim();
+        String password = data.get(0).get("password").trim();
 
         lp.loginToFacebook(email, password);
     }
