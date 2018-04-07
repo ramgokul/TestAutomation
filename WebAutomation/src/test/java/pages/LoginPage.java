@@ -22,7 +22,7 @@ public class LoginPage {
         this.base = base;
         PageFactory.initElements(base.driver, this);
 
-        pageObjectManager = new PageObjectManager(base.driver);
+        pageObjectManager = new PageObjectManager(base);
         commonHelper = pageObjectManager.getCommonHelper();
     }
 

@@ -1,16 +1,20 @@
 package core_libs;
 
+import base.BaseUtil;
+import managers.PageObjectManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.Set;
 
 public class CommonHelper {
-    SyncHelper sh = new SyncHelper();
+    private BaseUtil base;
+    SyncHelper syncHelper;
     WebDriver driver;
 
-    public CommonHelper(WebDriver driver) {
-        this.driver = driver;
+    public CommonHelper(BaseUtil base) {
+        this.driver = base.driver;
+        syncHelper = new PageObjectManager(base).getSyncHelper();
     }
 
 
@@ -36,12 +40,12 @@ public class CommonHelper {
     }
 
     public void click(WebElement element){
-        sh.waitForElementToBeClickable(driver,element);
+        syncHelper.waitForElementToBeClickable(element);
         element.click();
     }
 
     public void clear(WebElement element){
-        sh.waitForElementToBeClickable(driver,element);
+        syncHelper.waitForElementToBeClickable(element);
         element.clear();
     }
 
@@ -52,7 +56,7 @@ public class CommonHelper {
 
     public boolean isDisplayed(WebElement element){
         try{
-            sh.waitForElementToBeClickable(driver, element);
+            syncHelper.waitForElementToBeClickable(element);
             return element.isDisplayed();
         }catch (Exception e){
             return  false;
@@ -61,7 +65,7 @@ public class CommonHelper {
 
     public boolean isSelected(WebElement element){
         try{
-             sh.waitForElementToBeClickable(driver, element);
+            syncHelper.waitForElementToBeClickable(element);
              return element.isSelected();
         }catch (Exception e){
             return  false;
@@ -70,7 +74,7 @@ public class CommonHelper {
 
     public boolean isEnabled(WebElement element){
         try{
-             sh.waitForElementToBeClickable(driver, element);
+             syncHelper.waitForElementToBeClickable(element);
              return element.isEnabled();
         }catch (Exception e){
             return  false;
@@ -79,7 +83,7 @@ public class CommonHelper {
 
     public String getAttribute(WebElement element, String attributeName){
         try{
-             sh.waitForElementToBeClickable(driver, element);
+             syncHelper.waitForElementToBeClickable(element);
              return element.getAttribute(attributeName);
         }catch (Exception e){
             return  null;
@@ -88,7 +92,7 @@ public class CommonHelper {
 
     public String getText(WebElement element){
         try{
-             sh.waitForElementToBeClickable(driver, element);
+             syncHelper.waitForElementToBeClickable(element);
              return element.getText().trim();
         }catch (Exception e){
             return  null;
@@ -97,7 +101,7 @@ public class CommonHelper {
 
     public void submit(WebElement element){
         try{
-            sh.waitForElementToBeClickable(driver, element);
+            syncHelper.waitForElementToBeClickable(element);
             element.submit();
         }catch (Exception e){
             e.printStackTrace();

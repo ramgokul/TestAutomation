@@ -1,15 +1,19 @@
 package managers;
 
+import base.BaseUtil;
 import core_libs.BrowserHelper;
 import org.openqa.selenium.WebDriver;
 
 public class WebDriverManager {
+    private BaseUtil base;
     private WebDriver driver;
     private String browser_name;
     BrowserHelper browserHelper;
-    PageObjectManager pageObjectManager = new PageObjectManager(driver);
+    PageObjectManager pageObjectManager;
 
-    public WebDriverManager() {
+    public WebDriverManager(BaseUtil base) {
+        this.base = base;
+        pageObjectManager =  new PageObjectManager(base);
         browser_name = FileReaderManager.getInstance().getConfigFileReader().getBrowserName();
         browserHelper = pageObjectManager.getBrowserHelper();
     }

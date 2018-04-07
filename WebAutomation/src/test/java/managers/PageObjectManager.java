@@ -1,11 +1,12 @@
 package managers;
 
+import base.BaseUtil;
 import core_libs.*;
 import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
 
 public class PageObjectManager {
-    WebDriver driver;
+    private BaseUtil base;
     AlertsHelper alertsHelper;
     BrowserHelper browserHelper;
     CommonHelper commonHelper;
@@ -16,12 +17,12 @@ public class PageObjectManager {
     TablesHelper tablesHelper;
     LoginPage loginPage;
 
-    public PageObjectManager(WebDriver driver) {
-        this.driver = driver;
+    public PageObjectManager(BaseUtil base) {
+        this.base = base;
     }
 
     public AlertsHelper getAlertsHelper() {
-        return (alertsHelper == null) ? alertsHelper = new AlertsHelper() : alertsHelper;
+        return (alertsHelper == null) ? alertsHelper = new AlertsHelper(base) : alertsHelper;
     }
 
     public BrowserHelper getBrowserHelper() {
@@ -29,7 +30,7 @@ public class PageObjectManager {
     }
 
     public CommonHelper getCommonHelper() {
-        return (commonHelper == null) ? commonHelper = new CommonHelper(driver) : commonHelper;
+        return (commonHelper == null) ? commonHelper = new CommonHelper(base) : commonHelper;
     }
 
     public FramesHelper getFramesHelper() {
@@ -41,18 +42,18 @@ public class PageObjectManager {
     }
 
     public SelectHelper getSelectHelper() {
-        return (selectHelper == null) ? selectHelper = new SelectHelper() : selectHelper;
+        return (selectHelper == null) ? selectHelper = new SelectHelper(base) : selectHelper;
     }
 
     public SyncHelper getSyncHelper() {
-        return (syncHelper == null) ? syncHelper = new SyncHelper() : syncHelper;
+        return (syncHelper == null) ? syncHelper = new SyncHelper(base) : syncHelper;
     }
 
     public TablesHelper getTablesHelper() {
         return (tablesHelper == null) ? tablesHelper = new TablesHelper() : tablesHelper;
     }
 
-//    public LoginPage getLoginPage() {
-//        return (loginPage == null) ? loginPage = new LoginPage() : loginPage;
-//    }
+    public LoginPage getLoginPage() {
+        return (loginPage == null) ? loginPage = new LoginPage(base) : loginPage;
+    }
 }

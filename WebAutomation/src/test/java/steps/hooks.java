@@ -1,7 +1,6 @@
 package steps;
 
 import base.BaseUtil;
-import core_libs.BrowserHelper;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import managers.WebDriverManager;
@@ -12,7 +11,7 @@ public class hooks {
 
     public hooks(BaseUtil base) {
         this.base = base;
-        webDriverManager = new WebDriverManager();
+        webDriverManager = new WebDriverManager(base);
     }
 
     @Before
