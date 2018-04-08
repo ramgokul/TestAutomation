@@ -55,7 +55,7 @@ public class SelectHelper {
     public void selectByVisibleText(WebElement element, String value){
         syncHelper.waitForElementToBeClickable(element);
         while (!getAllSelectedOptionsString(element).contains(value)){
-            new Select(element).selectByVisibleText(value);
+            new Select(element).selectByVisibleText(value.trim());
         }
     }
 
