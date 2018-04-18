@@ -2,7 +2,6 @@ package managers;
 
 import base.BaseUtil;
 import core_libs.*;
-import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
 
 public class PageObjectManager {

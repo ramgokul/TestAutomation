@@ -54,14 +54,18 @@ public class SelectHelper {
 
     public void selectByVisibleText(WebElement element, String value){
         syncHelper.waitForElementToBeClickable(element);
+        select = new Select(element);
         while (!getAllSelectedOptionsString(element).contains(value)){
-            new Select(element).selectByVisibleText(value.trim());
+            select.selectByVisibleText(value.trim());
         }
     }
 
     public List<WebElement> getAllSelectedOptions(WebElement element){
         syncHelper.waitForElementToBeClickable(element);
-        return new Select(element).getAllSelectedOptions();
+        if (select == null) {
+            select = new Select(element);
+        }
+        return select.getAllSelectedOptions();
     }
 
     public List<String> getAllSelectedOptionsString(WebElement element){
