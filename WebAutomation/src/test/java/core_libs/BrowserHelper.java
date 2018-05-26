@@ -15,18 +15,25 @@ import java.util.concurrent.TimeUnit;
 public class BrowserHelper {
 
     WebDriver driver = null;
-    File downloadDirectory = null;
+    File downloadDirectory = null, failedScreenshotsDirectory = null;
     static long implicitWaitTimeout = 30;
 
 
     public WebDriver launch(String browserName){
 
         String filePath = new File(System.getProperty("user.dir")).getParent() + "/Downloads";
-        downloadDirectory = new File(filePath);
+        String filePath2 = new File(System.getProperty("user.dir")).getParent() + "/FailedScreenShots";
 
-        if(!downloadDirectory.exists()){
+        downloadDirectory = new File(filePath);
+        failedScreenshotsDirectory = new File(filePath2);
+
+        if(!downloadDirectory.exists()) {
             System.out.println("Creating download dir");
             downloadDirectory.mkdir();
+        }
+
+        if (!failedScreenshotsDirectory.exists()){
+            failedScreenshotsDirectory.mkdir();
         }
 
         switch (browserName.toLowerCase().trim()){
