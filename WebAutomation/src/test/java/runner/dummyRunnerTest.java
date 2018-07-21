@@ -5,6 +5,8 @@ import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/java/features/Login.feature", glue = "steps")
-public class FBRunner {
+@CucumberOptions(features = "src/test/java/features/dummy.feature", glue = {"steps"})
+public class dummyRunnerTest {
+
+
 }
